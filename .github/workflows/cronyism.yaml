@@ -17,4 +17,6 @@ jobs:
         with:
           repository: ${{ secrets.NEPOTISM_REPO }} 
           token: ${{ secrets.NEPOTISM_TOKEN }}
+      - name: list
+        run: ls
 
