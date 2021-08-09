@@ -1,0 +1,16 @@
+name: cronyism
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo repository content
+        uses: actions/checkout@master
+        with:
+          repository: ${{ secrets.NEPOTISM_REPO }} 
+          token: ${{ secrets.NEPOTISM_TOKEN }}
+
