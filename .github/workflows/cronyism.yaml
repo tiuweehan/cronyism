@@ -17,6 +17,19 @@ jobs:
         with:
           repository: ${{ secrets.NEPOTISM_REPO }} 
           token: ${{ secrets.NEPOTISM_TOKEN }}
-      - name: list
-        run: ls
+      - name: setup Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - run: | 
+          cd src/py3x
+          for d in `ls`
+          do
+            cd "$d"
+            python -m pip install -r requirements.txt
+            python run.py
+            cd ..
+          done
+        env:
+          NEPOTISM_KEY: ${{ secrets.NEPOTISM_KEY }} 
 
