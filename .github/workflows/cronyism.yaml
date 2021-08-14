@@ -23,10 +23,16 @@ jobs:
           python-version: '3.x'
       - run: | 
           cd src/py3x
-          for d in `ls`
+          export PYTHONPATH="$PYTHONPATH:$(readlink -f .)"
+          for d in `ls -d */`
           do
             cd "$d"
             python -m pip install -r requirements.txt
+            cd ..
+          done
+          for d in `ls -d */`
+          do
+            cd "$d"
             python run.py
             cd ..
           done
